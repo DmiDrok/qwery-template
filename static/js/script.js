@@ -1,10 +1,3 @@
-function setWelcomeFull() {
-  if (window.innerWidth) {
-    const welcome = document.querySelector(".welcome")
-    welcome.style.height = window.innerHeight + 400 + "px"
-  }
-}
-
 function setSizesSlider() {
   const sliderContainer = document.querySelector(".slider__container")
   const slider = document.querySelector(".slider__block")
@@ -77,41 +70,6 @@ function setAnchors() {
   }
 }
 
-function setAnimationOnShowing() {
-  const observer = new IntersectionObserver(callback, {
-    threshold: 0.4
-  })
-
-  const wrapper = document.querySelector(".wrapper")
-  const other = document.querySelector(".wrapper__other")
-  Array.from(wrapper.children).forEach(child => {
-    observer.observe(child)
-  })
-  Array.from(other.children).forEach(child => {
-    observer.observe(child)
-  })
-
-  function callback(entry) {
-    entry.forEach(node => {
-      if (node.isIntersecting) node.target.classList.remove("hide")
-    })
-  }
-}
-
-function setBodyChildrenClassHide() {
-  const wrapper = document.querySelector(".wrapper")
-  
-  Array.from(wrapper.children).forEach(child => {
-    child.classList.add("hide")
-
-    if (child.classList.contains("wrapper__other")) {
-      Array.from(child.children).forEach(child => {
-        child.classList.add("hide")
-      })
-    }
-  })
-}
-
 function setSmoothScroll() {
   const anchors = document.querySelectorAll('.header__nav.nav .header__link');
 
@@ -128,17 +86,18 @@ function setSmoothScroll() {
 }
 
 try {
-  setWelcomeFull()
   setSizesSlider()
   setInteractionsSlider()
   setAnchors()
 
   // set animation things
-  setBodyChildrenClassHide()
-  setAnimationOnShowing()
   setSmoothScroll();
 
   window.addEventListener("resize", setSizesSlider)
 } catch(err) {
-  console.error(err)
+
 }
+
+console.log = {};
+console.warn = {};
+console.error = {};
